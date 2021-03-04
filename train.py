@@ -37,17 +37,19 @@ ds = Dataset.Tabular.from_delimited_files(path=web_path)
 ds.take(3).to_pandas_dataframe()
 
 x, y = clean_data(ds)
-
-
 # TODO: Split data into train and test sets.
+
 
 # Register data as training dataset and test dataset
 
-#Prerequisites for dataset versioning, include an existing workspace
-ws = Workspace.from_config()
 
-ds = ds.register(workspace=workspace, name='bankmarketing_train_ds', description='bank marketing training dataset')
-ds = ds.register(workspace=workspace, name='bankmarketing_test_ds', description='bank marketing testing dataset', create_new_version = True)
+
+
+#Prerequisites for dataset versioning, include an existing workspace
+#ws = Workspace.from_config()
+
+#ds = ds.register(workspace=workspace, name='bankmarketing_train_ds', description='bank marketing training dataset')
+#ds = ds.register(workspace=workspace, name='bankmarketing_test_ds', description='bank marketing testing dataset', create_new_version = True)
 
 
 run = Run.get_context()
