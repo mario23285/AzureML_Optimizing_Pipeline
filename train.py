@@ -21,6 +21,7 @@ from azureml.data.dataset_factory import TabularDatasetFactory
 
 from azureml.core import Dataset
 from azureml.data.dataset_factory import DataType
+from azureml.core import Workspace, Dataset
 
 # TODO: Create TabularDataset using TabularDatasetFactory
 # Data is located at:
@@ -32,11 +33,18 @@ from azureml.data.dataset_factory import DataType
 web_path = 'https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv'
 ds = Dataset.Tabular.from_delimited_files(path=web_path)
 
+#preview the first 3 rows of data
+ds.take(3).to_pandas_dataframe()
+
 x, y = clean_data(ds)
+
 
 # TODO: Split data into train and test sets.
 
-### YOUR CODE HERE ###a
+# Register data as training dataset and test dataset
+ds = ds.register(workspace=workspace, name='bankmarketing_train_ds', description='bank marketing training dataset')
+ds = ds.register(workspace=workspace, name='bankmarketing_test_ds', description='bank marketing testing dataset')
+
 
 run = Run.get_context()
 
