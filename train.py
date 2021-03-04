@@ -1,3 +1,10 @@
+"""
+Mario Castresana | Udacity.com Machine Learning Engineer with MS Azure nanodegree
+
+First project:  Optmizing a Machine Learning Pipeline
+
+"""
+#imports
 from sklearn.linear_model import LogisticRegression
 import argparse
 import os
@@ -10,11 +17,20 @@ import pandas as pd
 from azureml.core.run import Run
 from azureml.data.dataset_factory import TabularDatasetFactory
 
+#extra imports to create the necessary infrastructure
+
+from azureml.core import Dataset
+from azureml.data.dataset_factory import DataType
+
 # TODO: Create TabularDataset using TabularDatasetFactory
 # Data is located at:
 # "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
 
-ds = ### YOUR CODE HERE ###
+
+
+# A TabularDatasetFactory is used to create a dataset from the provided link.
+web_path = 'https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv'
+ds = Dataset.Tabular.from_delimited_files(path=web_path)
 
 x, y = clean_data(ds)
 
