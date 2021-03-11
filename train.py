@@ -40,6 +40,11 @@ x, y = clean_data(ds)
 # TODO: Split data into train and test sets.
 # more info at https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html
 
+# combining the y series with the x data frame returned by the clean_data() method
+clean_data = x
+clean_data['y'] = y 
+
+x_train, x_test = train_test_split(clean_data, test_size = 0.3)
 
 
 
