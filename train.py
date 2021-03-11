@@ -38,6 +38,9 @@ ds.take(3).to_pandas_dataframe()
 
 x, y = clean_data(ds)
 # TODO: Split data into train and test sets.
+# more info at https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html
+
+
 
 
 # Register data as training dataset and test dataset
@@ -45,7 +48,7 @@ x, y = clean_data(ds)
 
 
 
-#Prerequisites for dataset versioning, include an existing workspace
+#Prerequisites for dataset versioning, include an existing workspace (download json file from Azure)
 #ws = Workspace.from_config()
 
 #ds = ds.register(workspace=workspace, name='bankmarketing_train_ds', description='bank marketing training dataset')
