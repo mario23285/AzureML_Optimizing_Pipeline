@@ -23,38 +23,7 @@ from azureml.core import Dataset
 from azureml.data.dataset_factory import DataType
 from azureml.core import Workspace, Dataset
 
-# TODO: Create TabularDataset using TabularDatasetFactory
-# Data is located at:
-# "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
 
-
-
-# A TabularDatasetFactory is used to create a dataset from the provided link.
-web_path = 'https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv'
-ds = Dataset.Tabular.from_delimited_files(path=web_path)
-
-#preview the first 3 rows of data
-ds.take(3).to_pandas_dataframe()
-
-x, y = clean_data(ds)
-# TODO: Split data into train and test sets.
-# more info at https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html
-
-x_train, x_test , y_train, y_test = train_test_split(x, y, test_size=20, random_state=42)
-
-# Register data as training dataset and test dataset
-
-
-
-
-#Prerequisites for dataset versioning, include an existing workspace (download json file from Azure)
-#ws = Workspace.from_config()
-
-#ds = ds.register(workspace=workspace, name='bankmarketing_train_ds', description='bank marketing training dataset')
-#ds = ds.register(workspace=workspace, name='bankmarketing_test_ds', description='bank marketing testing dataset', create_new_version = True)
-
-
-run = Run.get_context()
 
 def clean_data(data):
     # Dict for cleaning data
@@ -102,3 +71,37 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
+    
+# TODO: Create TabularDataset using TabularDatasetFactory
+# Data is located at:
+# "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
+
+
+
+# A TabularDatasetFactory is used to create a dataset from the provided link.
+web_path = 'https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv'
+ds = Dataset.Tabular.from_delimited_files(path=web_path)
+
+#preview the first 3 rows of data
+ds.take(3).to_pandas_dataframe()
+
+x, y = clean_data(ds)
+# TODO: Split data into train and test sets.
+# more info at https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html
+
+x_train, x_test , y_train, y_test = train_test_split(x, y, test_size=20, random_state=42)
+
+# Register data as training dataset and test dataset
+
+
+
+
+#Prerequisites for dataset versioning, include an existing workspace (download json file from Azure)
+#ws = Workspace.from_config()
+
+#ds = ds.register(workspace=workspace, name='bankmarketing_train_ds', description='bank marketing training dataset')
+#ds = ds.register(workspace=workspace, name='bankmarketing_test_ds', description='bank marketing testing dataset', create_new_version = True)
+
+
+run = Run.get_context()
