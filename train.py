@@ -17,7 +17,7 @@ import pandas as pd
 from azureml.core.run import Run
 from azureml.data.dataset_factory import TabularDatasetFactory
 
-#extra imports to create the necessary infrastructure
+# extra imports to create the necessary infrastructure
 
 from azureml.core import Dataset
 from azureml.data.dataset_factory import DataType
@@ -47,11 +47,11 @@ x_train, x_test , y_train, y_test = train_test_split(x, y, test_size=20, random_
 
 
 
-#Prerequisites for dataset versioning, include an existing workspace (download json file from Azure)
-#ws = Workspace.from_config()
+# Prerequisites for dataset versioning, include an existing workspace (download json file from Azure)
+# ws = Workspace.from_config()
 
-#ds = ds.register(workspace=workspace, name='bankmarketing_train_ds', description='bank marketing training dataset')
-#ds = ds.register(workspace=workspace, name='bankmarketing_test_ds', description='bank marketing testing dataset', create_new_version = True)
+# ds = ds.register(workspace=workspace, name='bankmarketing_train_ds', description='bank marketing training dataset')
+# ds = ds.register(workspace=workspace, name='bankmarketing_test_ds', description='bank marketing testing dataset', create_new_version = True)
 
 
 run = Run.get_context()
@@ -81,7 +81,8 @@ def clean_data(data):
     x_df["poutcome"] = x_df.poutcome.apply(lambda s: 1 if s == "success" else 0)
 
     y_df = x_df.pop("y").apply(lambda s: 1 if s == "yes" else 0)
-    
+    return x_df, y_df
+
 
 def main():
     # Add arguments to script
@@ -102,3 +103,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
